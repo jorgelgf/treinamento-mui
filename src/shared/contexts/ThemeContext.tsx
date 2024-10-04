@@ -21,7 +21,10 @@ export const useAppThemeContext = () => {
 
 export const AppThemeProvider = ({ children }: IThemeProvider) => {
   const [themeName, setThemeName] = useState<'light' | 'dark'>('light');
-  const toggleTheme = useCallback(() => { setThemeName(oldThemeName => oldThemeName === 'light' ? 'dark' : 'light') }, []);
+  const toggleTheme = useCallback(() => {
+    setThemeName(
+      oldThemeName => oldThemeName === 'light' ? 'dark' : 'light')
+  }, []);
 
   const theme = useMemo(() => {
     if (themeName === 'light') return LightTheme
@@ -30,7 +33,11 @@ export const AppThemeProvider = ({ children }: IThemeProvider) => {
 
   return <ThemeContext.Provider value={{ themeName, toggleTheme }}>
     <ThemeProvider theme={theme}>
-      <Box width='100vw' height='100vh' bgcolor={theme.palette.background.default}>
+      <Box
+        width='100vw'
+        height='100vh'
+        bgcolor={theme.palette.background.default}
+      >
         {children}
       </Box>
     </ThemeProvider>
